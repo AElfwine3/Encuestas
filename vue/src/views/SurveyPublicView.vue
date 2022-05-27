@@ -1,6 +1,6 @@
 <template>
     <div class="py-5 px-8">
-        <div v-if="!loading" class="flex justify-center">Loading...</div>
+        <div v-if="loading" class="flex justify-center">Loading...</div>
         <form @submit.prevent="submitSurvey" v-else class="container mx -auto">
             <div class="grid grid-cols-6 items-center">
                 <div class="mr-4">
@@ -45,12 +45,12 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
-//import { useStore } from 'vuex';
-import store from '../store';
+import { useStore } from 'vuex';
+//import useStore from '../store';
 import QuestionViewer from '../components/viewer/QuestionViewer.vue';
 
 const route = useRoute();
-//const store = useStore();
+const store = useStore();
 
 const loading = computed(() => store.state.currentSurvey.loading);
 const survey = computed(() => store.state.currentSurvey.data);
